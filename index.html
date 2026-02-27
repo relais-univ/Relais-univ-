@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELAIS UNIV</title>
+    <style>
+        :root { 
+            --fond: #121212; --carte: #1e1e1e; --accent: #009739; 
+            --or: #ffcd00; --texte: #ffffff; --rouge: #ef3340; 
+        }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--fond); color: var(--texte); }
+        
+        /* Header style "Luxe discret" */
+        header { 
+            background: var(--carte); padding: 25px; text-align: center; 
+            border-bottom: 2px solid var(--or); box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .logo { font-size: 1.5em; font-weight: 900; letter-spacing: 4px; color: var(--or); text-transform: uppercase; }
+
+        /* Menu de navigation moderne */
+        .nav-bar { 
+            display: flex; justify-content: space-around; background: var(--carte); 
+            position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #333;
+        }
+        .nav-btn { padding: 15px; font-size: 0.75em; font-weight: bold; cursor: pointer; color: #888; transition: 0.3s; }
+        .nav-btn.active { color: var(--or); border-bottom: 2px solid var(--or); }
+
+        .container { padding: 20px; max-width: 500px; margin: auto; }
+        
+        /* Cartes style "Glassmorphism" */
+        .card { 
+            background: var(--carte); border-radius: 15px; padding: 20px; margin-bottom: 20px; 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3); border: 1px solid #333;
+        }
+        
+        .btn-action { 
+            width: 100%; padding: 16px; border-radius: 10px; border: none; 
+            font-weight: bold; font-size: 1em; cursor: pointer; margin-top: 10px;
+            background: var(--accent); color: white; transition: 0.2s;
+        }
+        .btn-action:active { transform: scale(0.98); }
+
+        .status { font-size: 0.8em; color: var(--accent); margin-bottom: 10px; display: block; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">RELAIS UNIV</div>
+</header>
+
+<div class="nav-bar">
+    <div class="nav-btn active" onclick="show('actu')">ACCUEIL</div>
+    <div class="nav-btn" onclick="show('ru')">TICKETS RU</div>
+    <div class="nav-btn" onclick="show('plus')">PLUS</div>
+</div>
+
+<div class="container">
+    <div id="actu" class="page">
+        <div class="card">
+            <span class="status">● SYSTÈME ACTIF</span>
+            <h3 style="margin:0;">Fil d'actualité</h3>
+            <p style="color:#bbb; font-size:0.9em;">Les informations de votre université s'afficheront ici en temps réel.</p>
+        </div>
+        <button class="btn-action" style="background:#3498db;" onclick="share()">INVITER UN CAMARADE</button>
+    </div>
+
+    <div id="ru" class="page" style="display:none;">
+        <div class="card">
+            <h3>Portefeuille Numérique</h3>
+            <div style="font-size:2em; font-weight:bold; color:var(--or);">1 500 F</div>
+            <p style="color:#888;">Solde disponible pour vos tickets</p>
+            <button class="btn-action">ACHETER UN TICKET RU (100F)</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function show(id) {
+        document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).style.display = 'block';
+        event.currentTarget.classList.add('active');
+    }
+    function share() {
+        let link = window.location.href;
+        window.open("https://wa.me/?text=" + encodeURIComponent("Simplifie ta vie au campus ! Utilise l'application Relais Univ pour tes tickets et tes notes : " + link));
+    }
+</script>
+
+</body>
+</html>
 
